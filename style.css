@@ -1,0 +1,439 @@
+/* =========================================================
+   Reset y variables
+   ========================================================= */
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+
+:root {
+   /* Colores */
+   --color-primary: #FFBE2C;
+   --color-primary-light: #FFF1CC;
+   --color-secondary: #1F5558;   /* sólido y más oscuro: contraste AA sobre el amarillo */
+   --color-accent: orange;
+   --color-card: beige;
+   --color-text: black;
+
+   /* Tipografía */
+   --font-main: Verdana, Geneva, Tahoma, sans-serif;
+   --family-font: "Lato", var(--font-main);
+
+   /* Otros */
+   --header-offset: 8rem;        /* alto aproximado del header sticky, para los anclas */
+   --shadow-hover: 4px 4px 8px rgba(31, 85, 88, 0.5);
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+html {
+   font-size: 93.75%;            /* = 15px, pero respeta el tamaño elegido en el navegador */
+   font-family: var(--family-font);
+   scroll-padding-top: var(--header-offset);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+   html {
+      scroll-behavior: smooth;
+   }
+}
+
+body {
+   color: var(--color-text);
+   line-height: 1.6;
+}
+
+img {
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+button,
+input,
+textarea {
+   font: inherit;
+}
+
+:focus-visible {
+   outline: 3px solid var(--color-text);
+   outline-offset: 2px;
+}
+
+/* El ancla "Productos" apunta al h3: este margen deja visible el h2 de arriba */
+#product {
+   scroll-margin-top: 4rem;
+}
+
+/* =========================================================
+   Header y navegación
+   ========================================================= */
+header {
+   background-color: var(--color-primary);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   padding: 0 2rem;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+   .logo {
+      width: 5rem;
+      height: auto;
+      margin: 1rem 0;
+   }
+
+   .menu {
+      .menu-principal {
+         list-style: none;
+         display: flex;
+         align-items: center;
+         gap: 1rem 2rem;
+
+         & li {
+            display: flex;
+            align-items: center;
+
+            & a {
+               display: block;     /* necesario para que transform funcione */
+               border: 1px solid var(--color-primary);
+               padding: 0.5rem 2rem;
+               border-radius: 0.75rem;
+               color: var(--color-primary);
+               background-color: var(--color-secondary);
+               text-decoration: none;
+               transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+
+               &:hover,
+               &:focus-visible {
+                  color: var(--color-secondary);
+                  background-color: var(--color-primary);
+                  border-color: var(--color-secondary);
+                  transform: scale(1.1);
+               }
+            }
+
+            & > i {
+               font-size: 1.25rem;
+               color: var(--color-secondary);
+            }
+         }
+      }
+   }
+}
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.container-main {
+   min-height: 300px;
+   background-color: var(--color-primary-light);   /* respaldo si la imagen no carga */
+   background-image: url("./assets/img/fondo.jpg");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+
+   .description {
+      width: min(100%, 50rem);
+      padding: 3rem;
+
+      h1 {
+         font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);
+         line-height: 1.2;
+      }
+
+      p {
+         margin-top: 2rem;
+         font-weight: 400;
+         letter-spacing: 0.1rem;
+         text-shadow: 2px 2px 4px white;
+      }
+   }
+}
+
+/* Reservado: todavía no se usa en el HTML */
+.aside {
+   width: 150px;
+   border: 1px solid;
+
+   .menu-categorias {
+      list-style: none;
+
+      & li {
+         padding: 5px 10px;
+         border: 1px solid;
+         border-radius: 15px;
+         text-align: center;
+      }
+   }
+}
+
+/* =========================================================
+   Títulos
+   ========================================================= */
+h2,
+h3 {
+   color: var(--color-secondary);
+   padding: 1.5rem 0 0;
+}
+
+/* =========================================================
+   Botones (productos y formulario comparten estilo)
+   ========================================================= */
+.product-button,
+.container-contact button {
+   align-self: flex-start;
+   padding: 0.5rem 1.25rem;
+   border: 1px solid var(--color-secondary);
+   border-radius: 1rem;
+   color: white;
+   background-color: var(--color-secondary);
+   cursor: pointer;
+   transition: color 0.3s ease, background-color 0.3s ease;
+
+   &:hover {
+      color: var(--color-text);
+      background-color: var(--color-accent);
+   }
+}
+
+/* =========================================================
+   Catálogo
+   ========================================================= */
+.container-product {
+   text-align: center;
+   background-color: var(--color-primary);
+   padding-bottom: 2rem;
+
+   > .description {
+      padding: 0.5rem 1rem 0;
+   }
+
+   .product-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 1.5rem 1rem 0;
+
+      .product-card {
+         display: flex;
+         flex-direction: column;
+         width: min(100%, 300px);
+         border: 1px solid var(--color-secondary);
+         border-radius: 10px;
+         overflow: hidden;
+         background-color: var(--color-card);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+         .product-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+         }
+
+         .product-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;                /* todas las tarjetas de una fila quedan del mismo alto */
+            gap: 0.5rem;
+            text-align: left;
+            padding: 0.75rem 1rem 1rem;
+
+            .product-category {
+               align-self: flex-start;
+               background-color: var(--color-accent);
+               font-weight: bold;
+               letter-spacing: 2px;
+               padding: 0.25rem 0.5rem;
+               border-radius: 0.5rem;
+            }
+
+            .product-title {
+               font-size: 1.25rem;
+               font-weight: bold;
+            }
+
+            .product-description {
+               display: -webkit-box;
+               -webkit-box-orient: vertical;
+               -webkit-line-clamp: 3;
+               line-clamp: 3;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               line-height: 1.7;
+            }
+
+            .product-price {
+               margin-top: auto;   /* precio y botón siempre abajo */
+               font-size: 1.1rem;
+               font-weight: bold;
+               color: var(--color-secondary);
+            }
+         }
+
+         &:hover,
+         &:focus-within {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+         }
+      }
+   }
+}
+
+/* =========================================================
+   Reseñas, contacto y footer
+   ========================================================= */
+.container-review,
+.container-contact,
+footer {
+   text-align: center;
+}
+
+.container-review {
+   background-color: var(--color-primary-light);
+   padding-bottom: 1rem;
+
+   .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 2rem;
+      max-width: 70rem;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+
+      .review-card {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         gap: 1.5rem;
+         text-align: left;
+         border: 1px solid var(--color-secondary);
+         border-radius: 10px;
+         padding: 2rem;
+         background-color: var(--color-card);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+         p {
+            font-style: italic;
+            letter-spacing: 0.05rem;
+         }
+
+         span {
+            font-weight: bold;
+            color: var(--color-secondary);
+         }
+
+         &:hover,
+         &:focus-within {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+         }
+      }
+   }
+}
+
+.container-contact {
+   background-color: var(--color-primary);
+   padding: 0 1rem 3rem;
+
+   form {
+      max-width: 36rem;
+      margin: 1.5rem auto 0;
+      text-align: left;
+
+      fieldset {
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+         min-width: 0;
+         padding: 1.5rem;
+         border: 1px solid var(--color-secondary);
+         border-radius: 10px;
+         background-color: var(--color-primary-light);
+      }
+
+      legend {
+         padding: 0 0.5rem;
+         font-weight: bold;
+         color: var(--color-secondary);
+      }
+
+      label {
+         display: block;
+         margin-bottom: 0.25rem;
+         font-weight: bold;
+      }
+
+      input,
+      textarea {
+         width: 100%;
+         padding: 0.6rem 0.75rem;
+         border: 1px solid var(--color-secondary);
+         border-radius: 0.5rem;
+         background-color: white;
+      }
+
+      textarea {
+         min-height: 8rem;
+         resize: vertical;
+      }
+   }
+}
+
+footer {
+   padding: 1.5rem 1rem;
+   color: white;
+   background-color: var(--color-secondary);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media screen and (max-width: 760px) {
+   :root {
+      --header-offset: 1rem;      /* el header deja de ser sticky en móvil */
+   }
+
+   header {
+      flex-direction: column;
+      position: static;
+      padding: 0.5rem 1rem 1rem;
+
+      .logo {
+         width: 4rem;
+         margin: 0.5rem 0;
+      }
+
+      .menu .menu-principal {
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 0.75rem;
+
+         & li a {
+            padding: 0.4rem 1rem;
+         }
+      }
+   }
+
+   .container-main .description {
+      padding: 2rem 1.25rem;
+   }
+}
+
+/* =========================================================
+   Accesibilidad: respetar "reducir movimiento"
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+   *,
+   *::before,
+   *::after {
+      transition: none !important;
+      transform: none !important;
+   }
+}
