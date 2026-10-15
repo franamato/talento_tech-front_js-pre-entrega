@@ -1,6 +1,4 @@
-/* =========================================================
-   Reset y variables
-   ========================================================= */
+
 * {
    box-sizing: border-box;
    padding: 0;
@@ -11,7 +9,7 @@
    /* Colores */
    --color-primary: #FFBE2C;
    --color-primary-light: #FFF1CC;
-   --color-secondary: #1F5558;   /* sólido y más oscuro: contraste AA sobre el amarillo */
+   --color-secondary: #1F5558;   
    --color-accent: orange;
    --color-card: beige;
    --color-text: black;
@@ -20,16 +18,14 @@
    --font-main: Verdana, Geneva, Tahoma, sans-serif;
    --family-font: "Lato", var(--font-main);
 
-   /* Otros */
-   --header-offset: 8rem;        /* alto aproximado del header sticky, para los anclas */
+
+   --header-offset: 8rem;        
    --shadow-hover: 4px 4px 8px rgba(31, 85, 88, 0.5);
 }
 
-/* =========================================================
-   Base
-   ========================================================= */
+
 html {
-   font-size: 93.75%;            /* = 15px, pero respeta el tamaño elegido en el navegador */
+   font-size: 93.75%;            
    font-family: var(--family-font);
    scroll-padding-top: var(--header-offset);
 }
@@ -62,14 +58,12 @@ textarea {
    outline-offset: 2px;
 }
 
-/* El ancla "Productos" apunta al h3: este margen deja visible el h2 de arriba */
+
 #product {
    scroll-margin-top: 4rem;
 }
 
-/* =========================================================
-   Header y navegación
-   ========================================================= */
+
 header {
    background-color: var(--color-primary);
    display: flex;
@@ -100,7 +94,7 @@ header {
             align-items: center;
 
             & a {
-               display: block;     /* necesario para que transform funcione */
+               display: block;     
                border: 1px solid var(--color-primary);
                padding: 0.5rem 2rem;
                border-radius: 0.75rem;
@@ -127,12 +121,10 @@ header {
    }
 }
 
-/* =========================================================
-   Hero
-   ========================================================= */
+
 .container-main {
    min-height: 300px;
-   background-color: var(--color-primary-light);   /* respaldo si la imagen no carga */
+   background-color: var(--color-primary-light);  
    background-image: url("./assets/img/fondo.jpg");
    background-size: cover;
    background-position: center;
@@ -156,7 +148,7 @@ header {
    }
 }
 
-/* Reservado: todavía no se usa en el HTML */
+
 .aside {
    width: 150px;
    border: 1px solid;
@@ -173,18 +165,14 @@ header {
    }
 }
 
-/* =========================================================
-   Títulos
-   ========================================================= */
+
 h2,
 h3 {
    color: var(--color-secondary);
    padding: 1.5rem 0 0;
 }
 
-/* =========================================================
-   Botones (productos y formulario comparten estilo)
-   ========================================================= */
+
 .product-button,
 .container-contact button {
    align-self: flex-start;
@@ -202,9 +190,7 @@ h3 {
    }
 }
 
-/* =========================================================
-   Catálogo
-   ========================================================= */
+
 .container-product {
    text-align: center;
    background-color: var(--color-primary);
@@ -240,7 +226,7 @@ h3 {
          .product-content {
             display: flex;
             flex-direction: column;
-            flex: 1;                /* todas las tarjetas de una fila quedan del mismo alto */
+            flex: 1;                
             gap: 0.5rem;
             text-align: left;
             padding: 0.75rem 1rem 1rem;
@@ -270,7 +256,7 @@ h3 {
             }
 
             .product-price {
-               margin-top: auto;   /* precio y botón siempre abajo */
+               margin-top: auto;   
                font-size: 1.1rem;
                font-weight: bold;
                color: var(--color-secondary);
@@ -286,9 +272,7 @@ h3 {
    }
 }
 
-/* =========================================================
-   Reseñas, contacto y footer
-   ========================================================= */
+
 .container-review,
 .container-contact,
 footer {
@@ -392,12 +376,10 @@ footer {
    background-color: var(--color-secondary);
 }
 
-/* =========================================================
-   Responsive
-   ========================================================= */
+
 @media screen and (max-width: 760px) {
    :root {
-      --header-offset: 1rem;      /* el header deja de ser sticky en móvil */
+      --header-offset: 1rem;      
    }
 
    header {
@@ -426,9 +408,7 @@ footer {
    }
 }
 
-/* =========================================================
-   Accesibilidad: respetar "reducir movimiento"
-   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
    *,
    *::before,
